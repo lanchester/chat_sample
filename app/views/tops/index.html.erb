@@ -1,0 +1,39 @@
+<div>
+<%= link_to '部屋を作成', '/tops', remote: true %>
+</div>
+
+<ul>
+  <% @chat_room.each do |room| %>
+  <% end %>
+  <li></li>
+</ul>
+
+<div id="timeline" style="margin:20px;">
+ <div id="chat" data-uri="<%= request.host %>:3001/websocket"></div>
+</div>
+<div id="group_id" style="display: none;">hoge</div>
+
+<input type="text" name="" value="" placeholder="" id="msgbody">
+<input type="button" name="" value="send" id="send">
+
+<!-- <ul id="chat_area"></ul>
+
+<input type="text" name="" value="" id="comment">
+<input type="button" value="送信" id="send">
+
+<script>
+  var ws_rails = new WebSocketRails('localhost:3000/websocket');
+
+  // メッセージ受信時の処理
+  ws_rails.bind("websocket_chat", function(message){
+    var message_li = document.createElement("li");
+    message_li.textContent = message;
+    document.getElementById("chat_area").appendChild(message_li);
+  });
+
+  // メッセージ送信時の処理
+  document.getElementById("send").onclick =  function(){
+    var comment = document.getElementById("comment").value;
+    ws_rails.trigger("websocket_chat", comment);
+  };
+</script> -->
