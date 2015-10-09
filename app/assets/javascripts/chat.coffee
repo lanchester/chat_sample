@@ -2,16 +2,19 @@ class @ChatClass
   @is_focus = true
 
   constructor: (url, useWebsocket) ->
+    room_id = $('#room_id').text()
     # これがソケットのディスパッチャー
     @dispatcher = new WebSocketRails(url, useWebsocket)
-    @channel = @dispatcher.subscribe(group_id)
+    @channel = @dispatcher.subscribe(room_id)
+    console.log('@channel', @channel)
     console.log(url)
+    console.log(room_id)
     # イベントを監視
     @bindEvents()
 
   bindEvents: () =>
     # 送信ボタンが押されたらサーバへメッセージを送信
-    $('#send').on 'click', @sendMessage
+    $('#chat_form').on 'submit', @sendMessage
     # サーバーからnew_messageを受け取ったらreceiveMessageを実行
     @dispatcher.bind 'new_message', @receiveMessage
     @channel.bind 'new_message', @receiveMessage
@@ -23,12 +26,14 @@ class @ChatClass
     # オブジェクトでデータを指定
     user_name = $('#username').text()
     msg_body = $('#msgbody').val()
-    group_id = $('#group_id').text()
-    @dispatcher.trigger 'new_message', { name: user_name , body: msg_body , group_id: group_id}
+    room_id = $('#room_id').text()
+    @dispatcher.trigger 'new_message', { name: user_name , body: msg_body , room_id: room_id}
     $('#msgbody').val('')
     console.log msg_body
+    false
 
   receiveMessage: (message) =>
+    console.log('receiveMessage')
     console.log message
     # 受け取ったデータをappend
     $('#chat').append "#{message.name}「#{message.body}」<br/>"
@@ -38,13 +43,17 @@ class @ChatClass
         notification.close()
       , 3000
 
-$ ->
-  window.chatClass = new ChatClass($('#chat').data('uri'), true)
+$(document).on 'ready page:load', ->
+  room_id = $('#room_id').text()
 
-  $(window).on 'focus', ->
-    ChatClass.is_focus = true
-  .on 'blur', ->
-    ChatClass.is_focus = false
+  if room_id
+    window.chatClass = new ChatClass($('#chat').data('uri'), true)
+    console.log('ChatClass.constructor')
+
+    $(window).on 'focus', ->
+      ChatClass.is_focus = true
+    .on 'blur', ->
+      ChatClass.is_focus = false
 
 
 

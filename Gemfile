@@ -31,6 +31,8 @@ gem 'websocket-rails'#, github: 'moaa/websocket-rails', branch: 'sync_fixes'
 
 gem 'react-rails'
 
+gem 'nprogress-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

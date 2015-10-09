@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'tops#index'
-  resources :tops
+  get 'create_room', to: 'tops#create_room'
+  get 'room/:id', to: 'tops#show', as: 'show_room'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

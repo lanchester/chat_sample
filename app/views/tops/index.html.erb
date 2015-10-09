@@ -1,20 +1,12 @@
 <div>
-<%= link_to '部屋を作成', '/tops', remote: true %>
+<%= link_to '部屋を作成', create_room_path, remote: true %>
 </div>
 
-<ul>
-  <% @chat_room.each do |room| %>
+<ul id="chat_rooms">
+  <% Array(@chat_rooms).each do |room| %>
+    <%= render partial: 'room', locals: {room: room} %>
   <% end %>
-  <li></li>
 </ul>
-
-<div id="timeline" style="margin:20px;">
- <div id="chat" data-uri="<%= request.host %>:3001/websocket"></div>
-</div>
-<div id="group_id" style="display: none;">hoge</div>
-
-<input type="text" name="" value="" placeholder="" id="msgbody">
-<input type="button" name="" value="send" id="send">
 
 <!-- <ul id="chat_area"></ul>
 

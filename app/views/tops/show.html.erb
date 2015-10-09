@@ -1,4 +1,9 @@
-<p id="notice"><%= notice %></p>
+<div id="room_id" style="display: none;"><%= @chat_room.id %></div>
+<div id="timeline" style="margin:20px;">
+ <div id="chat" data-uri="<%= request.host %>:3001/websocket"></div>
+</div>
 
-<%= link_to 'Edit', edit_top_path(@top) %> |
-<%= link_to 'Back', tops_path %>
+<form id="chat_form" action="show_submit" method="get" accept-charset="utf-8">
+  <input type="text" name="" value="" placeholder="" id="msgbody">
+  <input type="button" name="" value="send" id="send">
+</form>

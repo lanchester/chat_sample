@@ -4,13 +4,18 @@ class TopsController < ApplicationController
   # GET /tops
   # GET /tops.json
   def index
-    @chat_room = ChatRoom.all
-    binding.pry
+    @chat_rooms = ChatRoom.all
+  end
+
+  def create_room
+    @chat_room = ChatRoom.create!
   end
 
   # GET /tops/1
   # GET /tops/1.json
   def show
+    @chat_room = ChatRoom.find params[:id]
+    session[:room_id] = @chat_room.id
   end
 
   # GET /tops/new
