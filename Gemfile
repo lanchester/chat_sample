@@ -33,6 +33,10 @@ gem 'react-rails'
 
 gem 'nprogress-rails'
 
+gem 'less-rails'
+
+gem 'twitter-bootstrap-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -41,6 +45,24 @@ gem 'nprogress-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+group :production, :staging do
+  gem 'unicorn'
+end
+
+group :development do
+  # N+1問題を検出
+  gem 'bullet'
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  # unicornを使っている場合のみ
+  gem 'capistrano3-unicorn'
+  # 手元の環境からデプロイ先のconsoleを使う
+  gem 'capistrano-rails-console'
+end
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,3 +1,214 @@
 // Place all the styles related to the top controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*
+Eric Meyer's CSS Reset
+http://meyerweb.com/eric/tools/css/reset/
+v1.0 | 20080212
+CSSresetr.com
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+  outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+  text-decoration: none;
+}
+del {
+  text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing=0' in the markup */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes $animation-name {
+    @content;
+  }
+  @-moz-keyframes $animation-name {
+    @content;
+  }
+  @keyframes $animation-name {
+    @content;
+  }
+}
+@mixin animation($animation-name) {
+  -webkit-animation: $animation-name;
+  -moz-animation: $animation-name;
+  animation: $animation-name;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+
+a {
+  -webkit-transition: all 200ms;
+     -moz-transition: all 200ms;
+      -ms-transition: all 200ms;
+       -o-transition: all 200ms;
+          transition: all 200ms;
+}
+.container {
+  width: 632px;
+  margin: 0 auto;
+}
+.create_room {
+  display: inline-block;
+  background: coral;
+  width: 50px;
+  height: 50px;
+  color: #FFF;
+  text-decoration: none;
+  text-align: center;
+  line-height: 50px;
+  &:hover {
+    background-color: coral;
+    opacity: .6;
+    .icon_plus {
+    }
+  }
+  .icon_plus {
+    font-weight: bold;
+    // margin-right: 5px;
+  }
+}
+
+
+@keyframes create_room {
+    0% {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    100% {
+        opacity: 1;
+        width: 150px;
+        height: 90px;
+    }
+}
+
+.chat_rooms {
+  list-style: none;
+  letter-spacing: -0.4em;
+  li {
+    letter-spacing: normal;
+    display: inline-block;
+    width: 150px;
+    height: 90px;
+    background-color: #EFEFEF;
+    margin: 0 1px -2px 0;
+    overflow: hidden;
+    &.animate {
+
+      animation: create_room 1s;
+      animation-iteration-count: 1;
+    }
+    a {
+      display: block;
+      height: 100%;
+      position: relative;
+      color: #FFF;
+      text-decoration: none;
+      font-style: italic;
+      font-size: 20px;
+      &:hover {
+        background-color: #AAA;
+      }
+      .room_num {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+      .remove_button {
+        display: block;
+        width: 20px;
+        height: 100%;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#686868+0,ffffff+100&0.39+0,0+99 */
+        background: -moz-linear-gradient(left, rgba(104,104,104,0.39) 0%, rgba(253,253,253,0) 99%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(104,104,104,0.39)), color-stop(99%,rgba(253,253,253,0)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(left, rgba(104,104,104,0.39) 0%,rgba(253,253,253,0) 99%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(left, rgba(104,104,104,0.39) 0%,rgba(253,253,253,0) 99%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(left, rgba(104,104,104,0.39) 0%,rgba(253,253,253,0) 99%,rgba(255,255,255,0) 100%); /* IE10+ */
+        background: linear-gradient(to right, rgba(104,104,104,0.39) 0%,rgba(253,253,253,0) 99%,rgba(255,255,255,0) 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#63686868', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+      }
+    }
+  }
+}
+
+#messages {
+  list-style: none;
+  width: 600px;
+  margin: 0 auto;
+  padding: 20px 0 0 0;
+  li {
+    font-size: 16px;
+    time {
+      font-size: 12px;
+      color: #CCC;
+    }
+  }
+}
+#chat_form {
+  & > div {
+  width: 600px;
+  margin: 20px auto;
+  display: table;
+  }
+  input {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  input[type="text"] {
+    width: 500px;
+    border-radius: 4px 0 0 4px;
+    box-sizing: border-box;
+  }
+  input[type="button"] {
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+    box-sizing: border-box;
+    width: 100px;
+  }
+}

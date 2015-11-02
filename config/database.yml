@@ -23,6 +23,10 @@ test:
   <<: *default
   database: html5_api_sample_test
 
+staging:
+  <<: *default
+  database: html5_api_sample_staging
+
 production:
   <<: *default
   database: html5_api_sample_production

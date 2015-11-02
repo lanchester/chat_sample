@@ -1,3 +1,5 @@
-<li>
-  <%= link_to room.id, show_room_path(room.id) %>
+<li <%= 'class=animate' if initialized.present? %>>
+  <%= link_to show_room_path(room.id) do %>
+    <span class="room_num"><%= room.id %></span>
+  <% end %>
 </li>

@@ -4,7 +4,7 @@ class TopsController < ApplicationController
   # GET /tops
   # GET /tops.json
   def index
-    @chat_rooms = ChatRoom.all
+    @chat_rooms = ChatRoom.all.order(id: :desc)
   end
 
   def create_room

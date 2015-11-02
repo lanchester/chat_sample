@@ -36,14 +36,20 @@ class @ChatClass
     console.log('receiveMessage')
     console.log message
     # 受け取ったデータをappend
-    $('#chat').append "#{message.name}「#{message.body}」<br/>"
+    message = $("<li>「#{message.body}」<time>#{message.time}</time></li>")
+    $('#messages').append message
+
     if !ChatClass.is_focus
       notification = new Notification "#{message.name} : #{message.body}"
       setTimeout ->
         notification.close()
       , 3000
 
+color_cords = ['#ff7f7f','#ff7fbf','#ff7fff','#bf7fff','#7f7fff','#7fbfff','#7fffff','#7fffbf','#7fff7f','#bfff7f','#ffff7f','#ffbf7f']
+
 $(document).on 'ready page:load', ->
+  $('#chat_rooms li').removeClass('animate')
+
   room_id = $('#room_id').text()
 
   if room_id
@@ -54,6 +60,8 @@ $(document).on 'ready page:load', ->
       ChatClass.is_focus = true
     .on 'blur', ->
       ChatClass.is_focus = false
+  # else
+
 
 
 

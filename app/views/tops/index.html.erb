@@ -1,12 +1,16 @@
-<div>
-<%= link_to '部屋を作成', create_room_path, remote: true %>
-</div>
+<div class="container">
+  <div>
+    <%= link_to create_room_path, remote: true, class: 'create_room' do %>
+      <span class="icon_plus">＋</span>
+    <% end %>
+  </div>
 
-<ul id="chat_rooms">
-  <% Array(@chat_rooms).each do |room| %>
-    <%= render partial: 'room', locals: {room: room} %>
-  <% end %>
-</ul>
+  <ul id="chat_rooms" class="chat_rooms">
+    <% Array(@chat_rooms).each do |room| %>
+      <%= render partial: 'room', locals: {room: room, initialized: false} %>
+    <% end %>
+  </ul>
+</div>
 
 <!-- <ul id="chat_area"></ul>
 
